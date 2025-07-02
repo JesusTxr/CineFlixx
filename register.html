@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Registro - CineFlix</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="auth-page">
+  <div class="auth-container">
+    <h2>Crear Cuenta</h2>
+    <form id="register-form">
+      <input type="text" placeholder="Nombre de usuario" id="register-username" required />
+      <input type="email" placeholder="Correo electrónico" id="register-email" required />
+      <input type="password" placeholder="Contraseña" id="register-password" required />
+      <button type="submit">Registrarme</button>
+      <p>¿Ya tienes cuenta? <a href="login.html">Inicia sesión</a></p>
+    </form>
+  </div>
+  <script type="module">
+    import { register } from './auth.js';
+    document.getElementById('register-form').addEventListener('submit', e => {
+      e.preventDefault();
+      const user = {
+        username: document.getElementById('register-username').value,
+        email: document.getElementById('register-email').value,
+        password: document.getElementById('register-password').value
+      };
+      const success = register(user);
+      if (success) location.href = 'login.html';
+      else alert('El nombre de usuario ya existe');
+    });
+  </script>
+</body>
+</html>

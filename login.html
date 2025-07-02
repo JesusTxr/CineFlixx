@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Iniciar Sesión - CineFlix</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="auth-page">
+  <div class="auth-container">
+    <h2>Iniciar Sesión</h2>
+    <form id="login-form">
+      <input type="text" placeholder="Nombre de usuario" id="login-username" required />
+      <input type="password" placeholder="Contraseña" id="login-password" required />
+      <button type="submit">Entrar</button>
+      <p>¿No tienes cuenta? <a href="register.html">Regístrate aquí</a></p>
+    </form>
+  </div>
+  <script type="module">
+    import { login } from './auth.js';
+    document.getElementById('login-form').addEventListener('submit', async e => {
+      e.preventDefault();
+      const username = document.getElementById('login-username').value;
+      const password = document.getElementById('login-password').value;
+      const success = login(username, password);
+      if (success) location.href = 'index.html';
+      else alert('Credenciales incorrectas');
+    });
+  </script>
+</body>
+</html>

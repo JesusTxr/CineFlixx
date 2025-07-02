@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CineFlix</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Overlay Login/Register -->
+  <div id="auth-overlay">
+    <!-- Login Form -->
+    <div class="auth-box" id="login-box">
+      <h2>Iniciar sesión</h2>
+      <form id="login-form">
+        <input id="login-user" type="text" placeholder="Usuario" required>
+        <input id="login-pass" type="password" placeholder="Contraseña" required>
+        <button type="submit">Entrar</button>
+        <p>¿Sin cuenta? <span id="show-register" class="auth-toggle">Regístrate</span></p>
+        <p style="font-size:0.8rem">Usuario demo: <b>demo / 1234</b></p>
+      </form>
+    </div>
+
+    <!-- Register Form -->
+    <div class="auth-box hidden" id="register-box">
+      <h2>Crear cuenta</h2>
+      <form id="register-form">
+        <input id="reg-user" type="text" placeholder="Usuario" required>
+        <input id="reg-email" type="email" placeholder="Correo" required>
+        <input id="reg-pass" type="password" placeholder="Contraseña" required>
+        <button type="submit">Registrarse</button>
+        <p>¿Ya tienes cuenta? <span id="show-login" class="auth-toggle">Inicia sesión</span></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Contenido Principal -->
+  <header class="header">
+    <a href="#" class="logo">CineFlix</a>
+    <nav class="navbar">
+      <a href="#" id="nav-home">Inicio</a>
+      <a href="#" id="nav-series">Series</a>
+      <a href="#" id="nav-movies">Películas</a>
+    </nav>
+
+    <form id="search-form" class="search-bar">
+      <input id="search-input" type="text" placeholder="Buscar…">
+      <button type="submit">Buscar</button>
+      <ul id="suggestions" class="suggestions"></ul>
+    </form>
+
+    <div id="auth-links">
+      <span id="welcome-user" style="display:none"></span>
+      <a href="#" id="logout-link" style="display:none">Cerrar sesión</a>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section id="hero-banner" class="hero-banner">
+      <div class="hero-content">
+        <h2 id="hero-title"></h2>
+        <p id="hero-overview"></p>
+      </div>
+    </section>
+
+    <!-- Carruseles -->
+    <section class="movie-carousel">
+      <h3>Populares</h3>
+      <button class="carousel-btn prev" data-carousel="popular-movies">&#8249;</button>
+      <div id="popular-movies" class="carousel-container"></div>
+      <button class="carousel-btn next" data-carousel="popular-movies">&#8250;</button>
+    </section>
+
+    <section class="movie-carousel">
+      <h3>Mejor calificadas</h3>
+      <button class="carousel-btn prev" data-carousel="top-rated-movies">&#8249;</button>
+      <div id="top-rated-movies" class="carousel-container"></div>
+      <button class="carousel-btn next" data-carousel="top-rated-movies">&#8250;</button>
+    </section>
+
+    <section class="movie-carousel">
+      <h3>Próximamente / En emisión</h3>
+      <button class="carousel-btn prev" data-carousel="upcoming-movies">&#8249;</button>
+      <div id="upcoming-movies" class="carousel-container"></div>
+      <button class="carousel-btn next" data-carousel="upcoming-movies">&#8250;</button>
+    </section>
+
+    <section id="search-results-container" class="movies-grid" style="display:none"></section>
+  </main>
+
+  <!-- Modal detalles -->
+  <div id="movie-details-modal" class="modal-overlay" style="display:none">
+    <div class="modal-content">
+      <button id="modal-close" class="modal-close-btn">&times;</button>
+      <div class="modal-main">
+        <img id="modal-poster" class="modal-poster" alt="Póster">
+        <div class="modal-info">
+          <h2 id="modal-title"></h2>
+          <p id="modal-tagline" class="tagline"></p>
+          <ul class="meta-list">
+            <li><strong>Año:</strong> <span id="modal-year"></span></li>
+            <li><strong>Duración:</strong> <span id="modal-runtime"></span></li>
+            <li><strong>Géneros:</strong> <span id="modal-genres"></span></li>
+            <li><strong>Valoración:</strong> <span id="modal-stars"></span></li>
+          </ul>
+          <p id="modal-overview"></p>
+          <button id="show-trailer-btn" class="trailer-btn" style="display:none">Ver tráiler</button>
+
+          <!-- NUEVO: reparto principal -->
+          <h3 id="cast-title" style="margin-top:1.5rem;display:none">Reparto principal</h3>
+          <ul id="modal-cast" class="cast-list"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Overlay tráiler -->
+  <div id="trailer-overlay" class="trailer-overlay" style="display:none">
+    <div id="trailer-container" class="trailer-container"></div>
+    <button id="trailer-close" class="trailer-close">&times;</button>
+  </div>
+
+</body>
+</html>
